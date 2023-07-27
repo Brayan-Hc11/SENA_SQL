@@ -1,4 +1,4 @@
-<h1 align="center">Modelado de los artefactos del sofware</h1>
+<h1 align="center">Modelado de los artefactos del software</h1>
 
 ***
 ## Fase del proyecto 
