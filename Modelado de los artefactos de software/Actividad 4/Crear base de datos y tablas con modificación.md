@@ -619,7 +619,7 @@ MySQL [vehiculos]> explain vehiculos;
 Microsoft Windows [Versión 10.0.19044.3086]
 (c) Microsoft Corporation. Todos los derechos reservados.
 
-MySQL [vehiculos]> alter table vehiculos add foreign key(IDtipo_vehiculo) REFERENCES tipo_vehiculos(IDtipo_vehiculo);
+MySQL [vehiculos]> alter table vehiculos add foreign key(IDtipo_vehiculo) REFERENCES tipo_vehiculo(IDtipo_vehiculo);
 Query OK, 0 rows affected (0.566 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ~~~
