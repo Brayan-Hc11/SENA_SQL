@@ -27,7 +27,21 @@
 
     - Añadar la llave foranea (IDtipo_vehiculo)a la tabla de datos 'vehiculos' 
 
-     - En la tabla 'ventas' cambiar (IDtipo_documento) por (IDcarro)   
+    - En la tabla 'ventas' cambiar (IDtipo_documento) por (IDcarro)
+  
+    - En la tabla de datos 'clientes' modificar el tamaño del atributo 'direccion' de (50) a (100)
+  
+    - En la tabla de datos 'vehiculos' modificar el tipo de dato  'varchar' del atributo 'vehiculo' a tipo de dato (text)
+
+    - En la tabla de datos 'clientes' eliminar las columnas 'barrio' y 'localidad'
+  
+    - En la tabla de datos 'clientes' añadir los atributos 'eps' y 'cantidad_hijos'
+  
+    - Cambiar el nombre de la tabla de datos 'vehiculos' por 'automotores'
+  
+    - Eliminar la tabla 'ventas' de la base de datos
+  
+    - crear una tabla de datos bajo el nombre de 'factura' con los atributos(ID_factura, 4 llaves foreneas porcetaje iva y número de factura )
  
  para este ejercicio realice una base de datos desde el simbolo del sistema (CMD) usando completa y unicamente el lenguaje de SQL .
 
@@ -644,7 +658,7 @@ MySQL [vehiculos]> explain vehiculos;
 ***Efectivamente nuestro elemento paso a ser una llaver foranea***
 
 ***
-- Como una ultima modificación a nuestra base de datos 'vehiculos' cambiaremos el nombre de un atributo al interior de una tabla de datos .
+- para esta modificación a nuestra base de datos 'vehiculos' cambiaremos el nombre de un atributo al interior de una tabla de datos .
 
 1. Verficaremos que el atributo 'ID_campo' nose encuentra en la tabla de datos 'ventas' en su defecto encotraremos el atributo 'IDvehiculo' que será el atributo que estaremos cambiando de nombre
 ~~~
@@ -686,6 +700,354 @@ MySQL [vehiculos]> explain ventas;
 ~~~
 ***Efectivamente el cambio de realizo con exito***
 
--Con esto hemos terminado la creación y modificación de tablas de datos en base de datos con el uso de SQL y CMD
+***
+-para la siguiente modificación lo que haremos sera un cambio en el tamaño del atributo 'direccion' que se encuentra en la tabla de datos 'clientes',para esto tendremos que verificar que el atributo 'direccion'se encuentra en la tabla de datos con un tamaño diferente al aque tenemos que cambiar, para esto seguiremos las siguientes instrucciones
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> explain clientes;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| IDcliente  | varchar(10) | NO   | PRI | NULL    |       |
+| P_Apellido | varchar(10) | NO   |     | NULL    |       |
+| S_Apellido | varchar(10) | YES  |     | NULL    |       |
+| P_Nombre   | varchar(10) | NO   |     | NULL    |       |
+| S_Nombre   | varchar(10) | YES  |     | NULL    |       |
+| Direccion  | varchar(50) | NO   |     | NULL    |       |
+| Barrio     | varchar(50) | NO   |     | NULL    |       |
+| Ciudad     | varchar(50) | NO   |     | NULL    |       |
+| Localidad  | varchar(50) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+9 rows in set (0.019 sec)
+~~~
+1. ya que hemos verificado que el atriburo 'Dirreccion' se encuentra con un tamaño de (50) lo cambiaremos con la siguiente linea de comandos
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> alter table clientes change Direccion Direccion varchar(100) not null;
+Query OK, 0 rows affected (0.034 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+~~~
+2. verificaremos que el tamaño del atributo 'Direccion' en la tabla 'clientes' haya cambiado el tamaño del atirbuto,
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> explain clientes;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| IDcliente  | varchar(10)  | NO   | PRI | NULL    |       |
+| P_Apellido | varchar(10)  | NO   |     | NULL    |       |
+| S_Apellido | varchar(10)  | YES  |     | NULL    |       |
+| P_Nombre   | varchar(10)  | NO   |     | NULL    |       |
+| S_Nombre   | varchar(10)  | YES  |     | NULL    |       |
+| Direccion  | varchar(100) | NO   |     | NULL    |       |
+| Barrio     | varchar(50)  | NO   |     | NULL    |       |
+| Ciudad     | varchar(50)  | NO   |     | NULL    |       |
+| Localidad  | varchar(50)  | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+9 rows in set (0.027 sec)
+~~~ 
+
+***
+- para la siguiente modificación se nos pide modificar el tipo de dato (varchar) que se encuentra presente en el atributo 'vehiculo' en la tabla de datos 'vehiculos'
+
+1. Verficaremos el tipo de dato que se encuentra en el atributo 'vehiculo' en la tabla de datos 'vehiculos'
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> explain vehiculos;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| IDvehiculo      | varchar(10) | NO   | PRI | NULL    |       |
+| Vehiculo        | varchar(10) | NO   |     | NULL    |       |
+| Transmision     | varchar(50) | NO   |     | NULL    |       |
+| Precio          | float       | NO   |     | NULL    |       |
+| modelo          | int(4)      | NO   |     | NULL    |       |
+| IDtipo_vehiculo | int(10)     | NO   | MUL | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.036 sec)
+~~~
+ya que hemos verificado que el tipo de dato no es el que queremos que tenga lo que haremos será cambiarlo por el tipo de datos que estamos buscando, lo haremos con la siguiente instrucción
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> alter table vehiculos change vehiculo vehiculo text(10) not null;
+Query OK, 0 rows affected (0.058 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+~~~
+2. verificaremos que el cambio se haya realizado exitosamente
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> explain vehiculos;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| IDvehiculo      | varchar(10) | NO   | PRI | NULL    |       |
+| vehiculo        | tinytext    | NO   |     | NULL    |       |
+| Transmision     | varchar(50) | NO   |     | NULL    |       |
+| Precio          | float       | NO   |     | NULL    |       |
+| modelo          | int(4)      | NO   |     | NULL    |       |
+| IDtipo_vehiculo | int(10)     | NO   | MUL | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.025 sec)
+~~~
+
+***
+- En esta modificación relaizaremos la eliminación de dos atributos (barrio, localidad) que se encuentran presentes en la tabla de datos 'clientes'
+
+  1. verificaremos que los atributos (barrio y localidad) se encuentran disponidles al interior de la base de datos 'clientes'
+ ~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> explain clientes;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| IDcliente  | varchar(10)  | NO   | PRI | NULL    |       |
+| P_Apellido | varchar(10)  | NO   |     | NULL    |       |
+| S_Apellido | varchar(10)  | YES  |     | NULL    |       |
+| P_Nombre   | varchar(10)  | NO   |     | NULL    |       |
+| S_Nombre   | varchar(10)  | YES  |     | NULL    |       |
+| Direccion  | varchar(100) | NO   |     | NULL    |       |
+| Barrio     | varchar(50)  | NO   |     | NULL    |       |
+| Ciudad     | varchar(50)  | NO   |     | NULL    |       |
+| Localidad  | varchar(50)  | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+9 rows in set (0.022 sec)
+
+MariaDB [vehiculos]>
+ ~~~
+ 2. El primer cambio que realizaremos será la eliminación del atributo 'barrio' y seguido de esto eliminaremos el atributo 'localidad' lo haremos de la siguiente forma
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> alter table clientes drop barrio;
+Query OK, 0 rows affected (0.022 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [vehiculos]> alter table clientes drop localidad;
+Query OK, 0 rows affected (0.068 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+~~~
+ 3. verificaremos que los cambios que hemos realizado se hayan realizado correctamente
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> explain clientes;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| IDcliente  | varchar(10)  | NO   | PRI | NULL    |       |
+| P_Apellido | varchar(10)  | NO   |     | NULL    |       |
+| S_Apellido | varchar(10)  | YES  |     | NULL    |       |
+| P_Nombre   | varchar(10)  | NO   |     | NULL    |       |
+| S_Nombre   | varchar(10)  | YES  |     | NULL    |       |
+| Direccion  | varchar(100) | NO   |     | NULL    |       |
+| Ciudad     | varchar(50)  | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+7 rows in set (0.025 sec)
+~~~
+
+***
+- En la siguiente modificación añadiremos dos columnas nuevas a la tabla de datos 'clientes' para esto verificaremos primero el estado de la tabla de datos
+  ~~~
+ Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> explain clientes;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| IDcliente  | varchar(10)  | NO   | PRI | NULL    |       |
+| P_Apellido | varchar(10)  | NO   |     | NULL    |       |
+| S_Apellido | varchar(10)  | YES  |     | NULL    |       |
+| P_Nombre   | varchar(10)  | NO   |     | NULL    |       |
+| S_Nombre   | varchar(10)  | YES  |     | NULL    |       |
+| Direccion  | varchar(100) | NO   |     | NULL    |       |
+| Ciudad     | varchar(50)  | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+7 rows in set (0.025 sec)
+  ~~~
+
+ya que hemos verificado el estado de la tabla 'clientes' lo que aremos sera añadir los nuevos atributos 'eps' y 'cantidad_hijos', lo realizaremos de la siguiente forma
+~~~
+ Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> alter table clientes add eps varchar(50) not null;
+Query OK, 0 rows affected (0.023 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [vehiculos]> alter table clientes add cantidad_hijos int(30)not null;
+Query OK, 0 rows affected (0.024 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+~~~
+verificaremos que el cambio se haya realizado exitosamente
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> explain clientes;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| IDcliente      | varchar(10)  | NO   | PRI | NULL    |       |
+| P_Apellido     | varchar(10)  | NO   |     | NULL    |       |
+| S_Apellido     | varchar(10)  | YES  |     | NULL    |       |
+| P_Nombre       | varchar(10)  | NO   |     | NULL    |       |
+| S_Nombre       | varchar(10)  | YES  |     | NULL    |       |
+| Direccion      | varchar(100) | NO   |     | NULL    |       |
+| Ciudad         | varchar(50)  | NO   |     | NULL    |       |
+| eps            | varchar(50)  | NO   |     | NULL    |       |
+| cantidad_hijos | int(30)      | NO   |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+9 rows in set (0.027 sec)
+~~~
+
+***
+- En la siguiente modificación cambiaremos el nombre de la tabla 'vehiculos' por el nombre 'automores'
+ 1. primero verificaremos el estado de las tablas en la base de datos
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> show tables;
++---------------------+
+| Tables_in_vehiculos |
++---------------------+
+| clientes            |
+| tipo_vehiculo       |
+| vehiculos           |
+| vendedores          |
+| ventas              |
++---------------------+
+5 rows in set (0.001 sec)
+~~~
+ya que hemos verificado que la tabla 'vehiculos' se encuentra en la base de datos lo que haremos será cambiar el nombre de la tabla de datos por 'automores' y lo haremos de la siguiente forma
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> alter table vehiculos rename automores;
+Query OK, 0 rows affected (0.048 sec)
+~~~
+verificaremos que el cambio se haya realizado correctamente
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> show tables;
++---------------------+
+| Tables_in_vehiculos |
++---------------------+
+| automores           |
+| clientes            |
+| tipo_vehiculo       |
+| vendedores          |
+| ventas              |
++---------------------+
+5 rows in set (0.001 sec)
+~~~
+
+***
+- para la siguiente modificación eliminaremos la tabla 'ventas' de la base de datos
+
+ 1. verificaremos que la tabla se encuentra en la base de datos
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> show tables;
++---------------------+
+| Tables_in_vehiculos |
++---------------------+
+| automores           |
+| clientes            |
+| tipo_vehiculo       |
+| vendedores          |
+| ventas              |
++---------------------+
+5 rows in set (0.001 sec)
+~~~
+Ahora que hemos verificado el estado de la tabla 'ventas' procedemos a eliminar esta tabla
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> drop table ventas;
+Query OK, 0 rows affected (0.012 sec)
+~~~
+Ahora verrificaremos el estado de la base de datos
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> show tables;
++---------------------+
+| Tables_in_vehiculos |
++---------------------+
+| automores           |
+| clientes            |
+| tipo_vehiculo       |
+| vendedores          |
++---------------------+
+4 rows in set (0.001 sec)
+~~~
+
+***
+- Para esta modificación agregaremos una nueva tabla de datos con el nombre de 'factura'
+ 1. para esto verificaremos el estado de la base de datos
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MariaDB [vehiculos]> show tables;
++---------------------+
+| Tables_in_vehiculos |
++---------------------+
+| automores           |
+| clientes            |
+| tipo_vehiculo       |
+| vendedores          |
++---------------------+
+4 rows in set (0.001 sec)
+~~~
+ahora crearemos la nueva tabla de datos
+
+
+
+
+
+
+
+
+
+create table facturas
+     (
+     IDfactura varchar(10) not null,
+     IDvendedor int(10) not null,
+     IDvehiculo varchar(10) not null,
+     IDcliente varchar(10) not null,
+     foreign key (IDvendedor) REFERENCES Vendedores(IDvendedor),
+     foreign key (IDvehiculo) REFERENCES automotores(IDvehiculo),
+     foreign key (IDCliente) REFERENCES Clientes(IDCliente),
+     primary key (IDfactura)
+ );
+
+
+
 
 ### Elaborado por: Brayan Andres Hernandez Colon
