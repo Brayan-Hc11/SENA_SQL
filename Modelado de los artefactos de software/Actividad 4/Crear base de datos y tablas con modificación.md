@@ -51,8 +51,13 @@
  - Desde la ventana de ejecutar que se abre usando el comando (Win + R), acederemos al simbolo del sistema de Windows o tambien conocido como la terminal de comandos integrados (CMD), ya abierta la consola de la terminal lo que haremos es dirigirnos al directorio de xampp, en donde alojaremos la base de datos, para hacer esto usaremos los comandos de navegación de la terminal, si no los conoces puedes visitar mi repositorio [Terminal](https://github.com/Brayan-Hc11/Terminal) en donde podrás conocer los movimientos que nos permite hacer la consola de comandos.
 
 ***
-### Direccionamiento y navegación
 
+<details>
+    <summary>
+        <h3> Direccionamiento y navegación</h3>    
+    </summary>
+
+***
  - Lo que haremos con las siguientes instrucciones es retroceder en la ubicacióon en la que nos encontramos actualmente, con el fin de poder llegar a la unidad principal de almacinamiento que en nuestro caso  es el disco local C.
 ~~~
 Microsoft Windows [Versión 10.0.19044.3086]
@@ -133,7 +138,15 @@ MySQL [(none)]>
 ~~~
 
 ***
-## Creación de la base de datos ("vehiculos")
+</details>
+
+***
+<details>
+    <summary> 
+        <h3>Creación de la base de datos ("vehiculos")</h3>
+    </summary>
+
+***
 - para crear una nueva base de datos ingresaremo un comando de creación seguido de esto indicaremos el archivo que queremos guardar, en este caso será una base de datos, seguido esto el nombre de la base de datos que le asignaremos, para nuestro ejercicio haremos una base de datos con el nombre de vehiculos como se muestra a continuación:
 ~~~
 Microsoft Windows [Versión 10.0.19044.3086]
@@ -155,6 +168,7 @@ Query OK, 1 row affected (1.091 sec)
 MySQL [(none)]>show databases;
 ~~~
 nos mostrará un listado en donde podemos ver las bases de datos que tenemos alojadas en el gestor de base de datos:
+
 ~~~
 Microsoft Windows [Versión 10.0.19044.3086]
 (c) Microsoft Corporation. Todos los derechos reservados.
@@ -174,6 +188,7 @@ MySQL [(none)]> show databases;
 +--------------------+
 8 rows in set (0.025 sec)
 ~~~
+
 - ya que hemos verificado que la base de datos se encuentra en servicio haremos uso de ella con ayuda de los comandos de la terminal, en donde le indicaremos que queremos acceder a ella, pero aparte de eso que la queremos usar, lo haremos de la siguiente forma:
 
 _nota:_ El comando le indica al sistema que accedemos a la base de datos 'vehiculos' y aparte de eso que la usaremos:
@@ -189,7 +204,15 @@ MySQL [vehiculos]>
 ~~~
 
 ***
-### Creación de tablas al interior de la DB ("vehiculos")
+</details>
+
+***
+<details>
+    <summary>
+        <h3>Creación de tablas al interior de la DB ("vehiculos")</h3>
+    </summary>
+
+***
 - Al interior de nuestra base de datos  crearemos tablas en donde almacenaremos datos, pero por el momento no haremos eso, solo crearemos las tablas de datos. Para comenzar crearemos una tabla padre bajo el nombre de vendedores, para eso usaremos la siguiente instrucción
 
 ___Nota;___ Los siguientes procedimientos que veremos acontinuación se repetiran varias veces 
@@ -323,10 +346,15 @@ MySQL [vehiculos]> show tables;
 +---------------------+
 4 rows in set (0.036 sec)
 ~~~
+</details>
 
 ***
-### Modificación de las tablas de datos
+<details>
+    <summary>
+        <h3>Modificación de las tablas de datos</h3>
+    </summary>
 
+***
 - Comenzaremos por la modificación de las tablas de datos. La primera modificación que realizaremos será cambiar o reemplazar un valor.
 Realizaremos esta modificación en la tabla de datos 'clientes' en donde cambiaremos el atributo 'zona' por el atributo 'localidad' para eso haremos el siguiente procedimiento
 
@@ -862,8 +890,9 @@ MariaDB [vehiculos]> explain clientes;
 ~~~
 
 ***
-- En la siguiente modificación añadiremos dos columnas nuevas a la tabla de datos 'clientes' para esto verificaremos primero el estado de la tabla de datos
-  ~~~
+- En la siguiente modificación añadiremos dos columnas nuevas a la tabla de datos 'clientes', para esto verificaremos primero el estado de la tabla de datos
+
+~~~
  Microsoft Windows [Versión 10.0.19044.3086]
 (c) Microsoft Corporation. Todos los derechos reservados.
 
@@ -911,7 +940,7 @@ MariaDB [vehiculos]> explain clientes;
 | S_Nombre       | varchar(10)  | YES  |     | NULL    |       |
 | Direccion      | varchar(100) | NO   |     | NULL    |       |
 | Ciudad         | varchar(50)  | NO   |     | NULL    |       |
-| eps            | varchar(50)  | NO   |     | NULL    |       |
+| eps            | tinytext (50)  | NO   |     | NULL    |       |
 | cantidad_hijos | int(30)      | NO   |     | NULL    |       |
 +----------------+--------------+------+-----+---------+-------+
 9 rows in set (0.027 sec)
@@ -1009,7 +1038,7 @@ MariaDB [vehiculos]> show tables;
 
 ***
 - Para esta modificación agregaremos una nueva tabla de datos con el nombre de 'factura'
- 1. para esto verificaremos el estado de la base de datos
+ 1. para esto verificaremos el estado de la base de datos y que no se encuentra la tabla de datos 
 ~~~
 Microsoft Windows [Versión 10.0.19044.3086]
 (c) Microsoft Corporation. Todos los derechos reservados.
@@ -1025,29 +1054,46 @@ MariaDB [vehiculos]> show tables;
 +---------------------+
 4 rows in set (0.001 sec)
 ~~~
-ahora crearemos la nueva tabla de datos
+ahora crearemos la nueva tabla de datos al interior de nustra base de datos
 
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
 
+MySQL [vehiculos]> create table facturas
+    ->      (
+    ->      IDfactura varchar(10) not null,
+    ->      IDvendedor int(10) not null,
+    ->      IDvehiculo varchar(10) not null,
+    ->      IDcliente varchar(10) not null,
+    ->      foreign key (IDvendedor) REFERENCES vendedores(IDvendedor),
+    ->      foreign key (IDvehiculo) REFERENCES automotores(IDvehiculo),
+    ->      foreign key (IDcliente) REFERENCES cientes(IDCliente),
+    ->      primary key (IDfactura)
+    ->  );
+Query OK, 0 rows affected, 1 warning (0.095 sec)
+~~~
+verificaremos que hemos realizado la moidioficación de forma exitosa
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
 
+MySQL [vehiculos]> show tables;
++---------------------+
+| Tables_in_vehiculos |
++---------------------+
+| automores           |
+| clientes            |
+| facturas            |
+| tipo_vehiculo       |
+| vendedores          |
++---------------------+
+5 rows in set (0.001 sec)
+~~~
 
+ ___Nuestro cambio se ha realizado de forma exitosa___
 
+ </details>
 
-
-
-
-create table facturas
-     (
-     IDfactura varchar(10) not null,
-     IDvendedor int(10) not null,
-     IDvehiculo varchar(10) not null,
-     IDcliente varchar(10) not null,
-     foreign key (IDvendedor) REFERENCES Vendedores(IDvendedor),
-     foreign key (IDvehiculo) REFERENCES automotores(IDvehiculo),
-     foreign key (IDCliente) REFERENCES Clientes(IDCliente),
-     primary key (IDfactura)
- );
-
-
-
-
+***
 ### Elaborado por: Brayan Andres Hernandez Colon
