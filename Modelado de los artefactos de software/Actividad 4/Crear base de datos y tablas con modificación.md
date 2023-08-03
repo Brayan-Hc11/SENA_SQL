@@ -41,7 +41,9 @@
   
     - Eliminar la tabla 'ventas' de la base de datos
   
-    - crear una tabla de datos bajo el nombre de 'factura' con los atributos(ID_factura, 4 llaves foreneas porcetaje iva y número de factura )
+    - crear una tabla de datos bajo el nombre de 'factura' con los atributos(ID_factura, 4 llaves foreneas porcetaje iva y número de factura)
+  
+4. Después de haber hecho las modificaciones agregaremos o insertaremos datos a nuestra base de datos
  
  para este ejercicio realice una base de datos desde el simbolo del sistema (CMD) usando completa y unicamente el lenguaje de SQL .
 
