@@ -1,0 +1,146 @@
+Este es un matirial de soporte en donde se encontrán todas las instrucciones 
+que son encesarias para este proyecto de trabajo y mantenimiento de bases de datos 
+
+//Ruta de alojamiento 
+	C:\xampp\mysql\bin>
+
+//iniciar el motor de base de datos
+	C:\xammpp\mysql\bin>mysql -h localhost -u root -p
+
+//Creación de una base de datos 
+	MySQL [(none)]> create database vehiculos;
+
+//Usar o acceder a la base de datos
+	MySQL [(none)]> use vehiculos;
+
+//primera tabla de datos(vendedores)
+
+	create table vendedores(
+		IDvendedor int(10) not null auto_increment,
+		P_Apellido varchar(50) not null,
+		S_Apellido varchar(50) null,
+		P_Nombre varchar(50) not null,
+ 		S_Nombre varchar(50) null,
+    		telefono varchar(30) not null,
+    		f_nacimiento date not null,
+		primary key (IDvendedor)
+	         );
+
+//segunda tabla de datos (vehiculos)
+
+	create table vehiculos(
+		IDvehiculo varchar(10) not null,
+    		Vehiculo varchar(10) not null,
+    		Transmision varchar(50) not null,
+   		Precio float not null,
+   		primary key (IDvehiculo)
+    		  );
+
+//tercera tabla de datos(clientes)
+
+	create table clientes(
+    		IDcliente varchar(10) not null,
+    		P_Apellido varchar(10) not null,
+    		S_Apellido varchar(10) null,
+    		P_Nombre varchar(10) not null,
+    		S_Nombre varchar(10) null,
+    		Direccion varchar(50) not null,
+    		Barrio varchar(50) not null,
+    		Ciudad varchar(50) not null,
+    		Zona varchar(50) not null,
+    		Telefono varchar(50) not null,
+    		primary key (IDcliente)
+    		  );
+
+//cuarta tabla de datos (ventas)
+	
+	create table clientes(
+    		IDcliente varchar(10) not null,
+    		P_Apellido varchar(10) not null,
+    		S_Apellido varchar(10) null,
+    		P_Nombre varchar(10) not null,
+    		S_Nombre varchar(10) null,
+    		Direccion varchar(50) not null,
+    		Barrio varchar(50) not null,
+    		Ciudad varchar(50) not null,
+    		Zona varchar(50) not null,
+    		Telefono varchar(50) not null,
+    		primary key (IDcliente)
+    		  );
+
+//quinta tabla de datos (tipo_vehiculos)
+
+	create table tipo_vehiculo(
+    		IDtipo_vehiculo int(10) not null,
+    		tipo_vehiculo varchar(20) not null,
+    		primary key(IDtipo_vehiculo)
+    		  );
+
+//sexta tabla de datos (facturas)
+	
+	create table facturas(
+    		IDfactura varchar(10) not null,
+          	IDvendedor int(10) not null,
+          	IDvehiculo varchar(10) not null,
+          	IDcliente varchar(10) not null,
+          	foreign key (IDvendedor) REFERENCES vendedores(IDvendedor),
+          	foreign key (IDvehiculo) REFERENCES automotores(IDvehiculo),
+          	foreign key (IDcliente) REFERENCES cientes(IDCliente),
+          	primary key (IDfactura)
+    		  );
+
+//cambio de zona por localidad 
+
+	alter table clientes CHANGE Zona Localidad varchar(50) not null;
+
+//añadir el campo modelo a la tabla vehiculo
+
+	alter table vehiculos add modelo int(4) not null;
+
+//eliminar el campo de telefono de la tabla clientes
+	
+	alter table clientes drop telefono;
+
+//añadir un nuevo atirbuto a la tabla de tipo_vehiculos
+	
+	alter table vehiculos add IDtipo_vehiculo int(10) not null;
+
+//añadir una nueva llave foranea en la tabla de tipo_vehiculos
+
+	alter table vehiculos add foreign key(IDtipo_vehiculo) REFERENCES tipo_vehiculo(IDtipo_vehiculo);
+
+//cambiar el nombre del atributo en la tabla ventas
+
+	alter table ventas CHANGE IDvehiculo ID_campo varchar(10) not null;
+
+//cambiar un atributo al interior de la tabla clientes
+
+	alter table clientes change Direccion Direccion varchar(100) not null;
+
+//cambiar propiedades al interior de la tabla vehiculos
+
+	alter table vehiculos change vehiculo vehiculo text(10) not null;
+
+//eliminar el dato de barrio en la tabla de clientes
+
+	alter table clientes drop barrio;
+
+//eliminar el dato de localidad en la tabla de clientes
+
+	alter table clientes drop localidad;
+
+//añadir un nuevo atributo a la tabla de clientes
+
+	alter table clientes add eps varchar(50) not null;
+
+//añadir un nuevo atributo a la tabla de clientes
+
+	alter table clientes add cantidad_hijos int(30)not null;
+
+//renombrar la tabla de vehiculos a automores
+		
+	alter table vehiculos rename automores;
+
+//eliminar la tabla ventas
+
+	 drop table ventas;
