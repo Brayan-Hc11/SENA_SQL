@@ -1,0 +1,157 @@
+
+// Ingresar a la ruta dedl mysql.exe
+
+	cd C:\xampp\mysql\bin
+
+//ejecutar mysql.exe
+
+	C:\xampp\mysql\bin> mysql -h localhost -u root -p 
+
+// ver las bases de datos 
+
+	show databases;
+
+// crear la base de datos 
+
+	create database Vehiculos;
+
+//usar la base de datos creada
+
+	use Vehiculos;
+
+
+// ver las tablas 
+	
+	show tables;
+
+//para ver los datos en un tabla de datos es 
+	
+	select * from vehiculos;
+
+
+//Creación de una nueva base de datos
+	
+	create database vehiculos2
+
+//primera tabla de datos en la base de datos vehiculos2 tabla(vendedores)
+	
+	create table Vendedores(
+    		IDvendedor int(10) not null auto_increment,
+    		P_Apellido varchar(50) not null,
+    		S_Apellido varchar(50) null,
+    		P_Nombre varchar(50) not null,
+    		S_Nombre varchar(50) null,
+    		telefono varchar(30) not null,
+    		f_nacimiento date not null,
+    		primary key(IDvendedor)
+		  );
+
+// crear la tala Vehiculos
+
+	create table Vehiculos(
+    		IDvehiculo varchar(10) not null,
+    		Vehiculo varchar(10) not null,
+    		Transmision varchar(70) NOT NULL,
+    		Precio float not null,
+    		primary key(IDvehiculo)
+    		  );
+
+// crear la tabla Cliente
+
+	create table Clientes(
+    		IDcliente varchar(10) not null,
+    		P_Apellido varchar(50) not null,
+    		S_Apellido varchar(50) null,
+    		P_Nombre varchar(50) not null,
+    		S_Nombre varchar(50) null,    
+    		Direccion varchar(50) not null,
+    		Barrio varchar(50) not null,
+    		Ciudad varchar(50) not null,
+    		Zona varchar(50) not null,
+    		Telefono varchar(30) not null,
+    		primary key(IDcliente)
+    		   );
+
+// crear la tabla Ventas
+	
+	create table Ventas(
+    		IDVenta varchar(10) not null,
+    		IDvendedor int(10) not null,
+    		IDvehiculo varchar(10) not null,
+    		IDcliente varchar(10) not null,
+    		Foreign key(IDvendedor) REFERENCES Vendedores(IDvendedor),
+    		Foreign key(IDvehiculo) REFERENCES Vehiculos(IDvehiculo),
+    		Foreign key(IDcliente) REFERENCES Clientes(IDcliente),
+    		Primary key(IDVenta)
+    		  );
+
+
+
+
+//insertar datos en las tablas de datos 
+
+	Insert into Vehiculos (IDvehiculo,Vehiculo,Transmision,Precio)values('V01','ABC123','MANUAL',72500000);
+Insert into Vehiculos (IDvehiculo,Vehiculo,Transmision,Precio)values('V01','ABC123','MANUAL',72500000);
+
+//insertar datos sin enlistarlos 
+
+	Insert into Vehiculos values ('V02','ABC124','MANUAL',55000000);
+
+// insertar varios registros
+
+	Insert into Vehiculos values ('V03','ABC125','MANUAL',155000000),('V04','ABC126','AUTOMATICA',8500000);
+
+// insertar datos a la tabla de vendedores
+
+	Insert into Vendedores (IDvendedor,P_Apellido,S_Apellido,P_Nombre,S_Nombre,telefono,f_nacimiento)values (1,'Cano','Toro','Dana','Luz','3013699900','2000-05-04');
+
+// insertar datos sin autoincremento
+
+	Insert into Vendedores (P_Apellido,S_Apellido,P_Nombre,S_Nombre,telefono,f_nacimiento)values('Perez','Florez','Ana','Flor','3013699900','2000-05-04');
+
+//actualizar datos
+
+	update Vendedores set  	P_Apellido = 'Dueñas',
+				P_Nombre ='Carlos',
+				S_Apellido = null,
+				S_Nombre = 'Luis',
+				telefono = '60122223333',
+				f_nacimiento ='2002-11-14'
+				where IDVENDEDOR=2;
+
+// dejar un campo vacio 
+
+	update vendedores set S_Apellido = ''
+	where IDVENDEDOR = 2;
+
+//ingresar datos para la tabla clientes
+
+	insert into clientes (IDcliente,P_Apellido,S_Apellido,P_Nombre,S_Nombre,Direccion,Barrio,Ciudad,Zona,Telefono)values('cc2233','Vega','','Carla','','kra 10 #  72-18','Rosales','Bogota d.c','Chapinero','6018882221');
+
+//inserta datos a la tabla de ventas 
+ 
+	insert into ventas (IDVenta,IDvendedor,IDvehiculo,IDcliente)values('01-230801',2,'V03','cc2233');
+
+
+update vehiculos set Transmision = 'AUTOMATICO'
+	where IDvehiculo = 'V02';
+
+1. REGISTRA LA VENTA 01-230801, REALIZADA POR ANA FLOR, DEL VEHICULO  ABC125,  AL CLIENTE CARLA
+2. REGISTRA LA VENTA 03-230801, REALIZADA POR CARLOS LUIS, DEL VEHICULO  ABC126,  AL CLIENTE CON LOS SIGUIENTES DATOS:
+IDcliente CC52111
+P_Apellido TORRES
+S_Apellido 
+P_Nombre ANA
+S_Nombre LUISA
+Direccion CALLE 100 #5-2
+Barrio CHICO
+Ciudad BOGOTA
+Zona USAQUEN 
+Telefono 3012224444
+3. ACTUALIZAR EL VALOR DEL VEHICULO ABC123 A 63000000
+4. BORRAR LA TABLA VENTAS 
+5. BORRAR LA TABLA CLIENTES 
+7. CREAR DE NUEVO LOS CLIENTES CARLA Y  ANA
+8. CREAR UNA VENTA
+9. ACTUALIZAR Transmision DEL VEHICULO  ABC124 AUTOMATICO
+10. ELIMINAR LOS CARROS VENDIDOS
