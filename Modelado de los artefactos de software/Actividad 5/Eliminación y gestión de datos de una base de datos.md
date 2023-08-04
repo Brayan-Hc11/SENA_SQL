@@ -298,7 +298,7 @@ MySQL [vehiculos2]> create table Ventas(
     ->       );
 Query OK, 0 rows affected, 1 warning (0.068 sec)
 ~~~
-De igual forma que la anterior tendremos que verificar que nuestra tabla haya sido creada correctamente
+- De igual forma que la anterior tendremos que verificar que nuestra tabla haya sido creada correctamente
 ~~~
 Microsoft Windows [Versión 10.0.19044.3086]
 (c) Microsoft Corporation. Todos los derechos reservados.
