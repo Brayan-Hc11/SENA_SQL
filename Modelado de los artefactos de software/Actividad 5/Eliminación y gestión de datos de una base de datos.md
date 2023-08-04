@@ -16,6 +16,7 @@
     - Elabore una tabla de datos bajo el nombre de 'ventas' esta tabla debe contener (ID de venta, el ID del vendedor, el ID del vehiculo, el ID del cliente,tres llaves foraneas y una llave primaria)
 
 3. Despúes de tener la base de datos y las tablas debe de realizar las siguientes modificaciones:
+    - inserte los datos ('V01','ABC123','MANUAL',72500000) en la tabla de datos 'vehiculos'
 
 
  
@@ -317,3 +318,13 @@ MySQL [vehiculos]> show tables;
 </details>
 
 ***
+
+<details>
+ <summary>
+   <h3>Manipulación de datos al interior de la base de datos ("vehiculos2")</h3>
+ </summary>
+
+
+
+ 
+</details>
