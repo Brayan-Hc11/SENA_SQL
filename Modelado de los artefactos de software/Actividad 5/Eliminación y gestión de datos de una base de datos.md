@@ -54,13 +54,13 @@
   
      - ELIMINAR LOS CARROS VENDIDOS
  
- para este ejercicio realice una base de datos desde el simbolo del sistema (CMD) usando completa y unicamente el lenguaje de SQL .
+ para este ejercicio realice una base de datos desde el simbolo del sistema (CMD) usando completa y unicamente el lenguaje de SQL.
 
 
 ***
 <h2 align="center">Creación de la base de datos</h2>
 
- Desde la ventana de ejecutar que se abre usando el comando (Win + R), acederemos al simbolo del sistema de Windows o tambien conocido como la terminal de comandos integrados (CMD), ya abierta la consola de la terminal lo que haremos es dirigirnos al directorio de xampp, en donde alojaremos la base de datos, para hacer esto usaremos los comandos de navegación de la terminal, si no los conoces puedes visitar mi repositorio [Terminal](https://github.com/Brayan-Hc11/Terminal) en donde podrás conocer los movimientos que nos permite hacer la consola de comandos.
+Desde la ventana de ejecutar que se abre usando el comando (Win + R), acederemos al simbolo del sistema de Windows o tambien conocido como la terminal de comandos integrados (CMD), ya abierta la consola de la terminal lo que haremos es dirigirnos al directorio de xampp, en donde alojaremos la base de datos, para hacer esto usaremos los comandos de navegación de la terminal, si no los conoces puedes visitar mi repositorio [Terminal](https://github.com/Brayan-Hc11/Terminal) en donde podrás conocer los movimientos que nos permite hacer la consola de comandos.
 
 ***
 <details>
@@ -821,6 +821,7 @@ MySQL [vehiculos2]> select * from ventas;
 ~~~
 
 ***
+
 - ACTUALIZAR EL VALOR DEL VEHICULO ABC123 A 63000000
 
 _Tenemos que confirmar el valor actual del vehiculo_
@@ -1030,7 +1031,7 @@ MySQL [vehiculos2]> select * from ventas;
 1 row in set (0.000 sec)
 
 ~~~ 
-</details>
+
 
 ***
 - ACTUALIZAR Transmision DEL VEHICULO  ABC124 AUTOMATICO
@@ -1082,4 +1083,6 @@ MySQL [vehiculos2]> select * from vehiculos;
 
 _verificamos el estado de la tabla_
 
-~~~
+</details>
+
+***
