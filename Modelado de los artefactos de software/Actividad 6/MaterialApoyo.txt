@@ -1,0 +1,147 @@
+//crear primeramente la base de datos
+
+	create database BlacklabelProyect
+
+//tabla de datos= usuarios 
+
+	presenta la llave foranea 
+		
+		id_estado de la tabla Estados  
+		id_rol de la tabla Roles
+		id_permisos de la tabla permisos 
+	
+
+	Create table Usuarios(
+		ID_Usuario int(10) not null auto_increment,
+		Documento int(10) not null,
+		NombreUsuario varchar(60) not null,
+		Contraseña varchar(30) not null,
+		Correo varchar(60) not null,
+		primary key(ID_Usuario)		
+		);
+
+// tabla de datos= roles
+
+	Create table Roles(
+		ID_Rol int(10) not null auto_increment,
+		Rol text(60) not null,
+		primary key(ID_Rol)
+		); 
+
+// tabla de datos= Estados
+		
+	Create table Estados(
+		ID_Estado varchar(60) not null,
+		Estados varchar (60) not null
+		);
+
+// tabla de datos= Categorias
+	
+	Create table Categorias(
+		ID_Categoria int(30) not null auto_increment,
+		Categoria varchar(60) not null,
+		primary key(ID_Categoria)	
+		);
+
+// tabl de datos= productos
+
+	presente llave foranea 
+
+		ID_estado de la tabla Estados  
+		ID_Catalogo de la tabla catalogo 
+		ID_Documento de la tabla usuarios
+		
+		
+	
+	Create table Productos(
+		ID_Producto int(20) not null auto_increment,
+		NombreProducto varchar(60) not null,
+		CodigoProducto int (30) not null,
+		PrecioProducto varchar(60) not null,
+		primary key(ID_Producto)			
+		);
+
+// tabla de datos= Catalogos
+
+	Create table Catalogos(
+		ID_Catalogo int(10) not null auto_increment,
+		Catalogo varchar(60) not null,
+		primary key(ID_Catalogo)
+		);
+
+// tabla de datos= Permisos
+		
+	presenta las llaves foreneas:
+		
+		ID_Documento de la tabla Usuarios
+		ID_Rol de la tabla Roles
+			
+	Create table Permisos(
+		ID_permiso int(10) not null auto_increment,
+		Permiso varchar(60) not null,
+		primary key(ID_Permiso)
+		);
+
+// tabla de datos= CarritoCompras 
+	
+	presenta las llaves foraneas:
+
+		ID_Producto de la tabla productos
+		PrecioProductos de la tabla productos
+
+
+	Create table CarritoCompras(
+		Cantidadproductos int(20) not null,
+		Totalproductos int (30) not null
+		);
+
+// inclumos las llaves foraneas en la tabla Usuarios
+
+	alter table Usuarios add ID_Estado varchar(60) not null;
+	alter table Usuarios add foreign key(ID_Estado) REFERENCES Estados(ID_Estado);
+
+ 	alter table Usuarios add ID_Rol int(10) not null;
+	alter table Usuarios add foreign key(ID_Rol) REFERENCES Roles(ID_Rol);
+
+	alter table Usuarios add ID_Permiso int(10) not null;
+	alter table Usuarios add foreign key(ID_Permiso) REFERENCES Permisos(ID_Permiso);
+
+// incluimos las llaves foraneas en la tabla productos
+	
+	alter table Productos add ID_Estado varchar(60) not null;
+	alter table Productos add foreign key(ID_Estado) REFERENCES Estados(ID_Estado);
+	
+	alter table Productos add ID_Catalogo int(10) not null;
+	alter table Productos add foreign key(ID_Catalogo) REFERENCES Catalogos(ID_Catalogo);
+
+	alter table Productos add Documento int(10) not null;
+	alter table Productos add foreign key(Documento) REFERENCES Usuarios(Documento);
+
+
+// incluimos las llaves foraneas en la tabla permisos
+	
+	alter table Permisos add Documento int(10) not null;
+	alter table Permisos add foreign key(Documento) REFERENCES Usuarios(Documento);
+
+	alter table Permisos add ID_Rol int(10) not null;
+	alter table Permisos add foreign key(ID_Rol) REFERENCES Roles(ID_Rol);
+
+
+// incluimos las llaves foraneas en la tabla CarritoCompras
+
+	alter table CarritoCompras add ID_Producto int(20) not null;
+	alter table CarritoCompras add foreign key(ID_Producto) REFERENCES Productos(ID_Producto);	
+
+	alter table CarritoCompras add PrecioProducto varchar(60) not null;	
+	alter table CarritoCompras add foreign key(PrecioProducto) REFERENCES Productos(PrecioProducto);	
+	
+
+	
+
+
+
+
+	
+
+
+
