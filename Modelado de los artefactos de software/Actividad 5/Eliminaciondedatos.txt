@@ -132,9 +132,27 @@ Insert into Vehiculos (IDvehiculo,Vehiculo,Transmision,Precio)values('V01','ABC1
  
 	insert into ventas (IDVenta,IDvendedor,IDvehiculo,IDcliente)values('01-230801',2,'V03','cc2233');
 
-
 update vehiculos set Transmision = 'AUTOMATICO'
 	where IDvehiculo = 'V02';
+
+
+//eliminar datos de las ventas
+
+	delete from ventas where IDventa = '01-230801';
+
+	delete from ventas where IDvehiculo = 'V03';
+
+	delete from ventas where IDVenta = '05-230801';
+	delete from ventas where IDvehiculo = 'V01';
+
+
+//	select concant nos permti añadir una concatenación
+
+//realizar consultas
+
+	SELECT IDvendedor,P_Nombre,S_Nombre,P_Apellido,S_Apellido FROM vendedores;
+
+
 
 1. REGISTRA LA VENTA 01-230801, REALIZADA POR ANA FLOR, DEL VEHICULO  ABC125,  AL CLIENTE CARLA
 2. REGISTRA LA VENTA 03-230801, REALIZADA POR CARLOS LUIS, DEL VEHICULO  ABC126,  AL CLIENTE CON LOS SIGUIENTES DATOS:
@@ -155,3 +173,60 @@ Telefono 3012224444
 8. CREAR UNA VENTA
 9. ACTUALIZAR Transmision DEL VEHICULO  ABC124 AUTOMATICO
 10. ELIMINAR LOS CARROS VENDIDOS
+
+
+11. Consultar los vendedores que hay
+	
+	SELECT IDvendedor,P_Nombre,S_Nombre,P_Apellido,S_Apellido FROM vendedores;
+
+12. consultar los nombre de los clientes 
+	
+	SELECT P_Nombre,S_Nombre FROM clientes;
+
+13. consulte el nombre del vendedor con el telefono
+
+	SELECT P_Nombre,S_Nombre,telefono FROM vendedores;
+
+14. consulte el apellido y fecha de nacimiento de los vendedores 
+
+	SELECT P_Apellido,S_Apellido,f_nacimiento FROM vendedores;
+
+15. consultar y armar el menesaje con los datos de correspondencia de los clientes (Direccion, Barrio, Ciudad,Zona)
+	
+	SELECT Direccion,Barrio,Ciudad,Zona FROM clientes;
+
+	SELECT CONCAT("El Cliente identificado con ",IDcliente," su dirrección de correspondencia corresponde a: ",Direccion," ",Barrio," ",Ciudad," ",Zona) AS 'Correspondencia de cliente' FROM clientes;
+
+
+16. consulte el vehiculo mas economico 
+
+	SELECT MIN(Precio) FROM vehiculos;
+	SELECT CONCAT("El vehiculo más economico es: ",Vehiculo," con el precio de: ",MIN(Precio)) AS 'vehiculo más economico' from vehiculos;
+	
+17. consulte el vehiculo mas caro
+
+	SELECT MAX(Precio) FROM vehiculos;
+	SELECT CONCAT("El vehiculo más caro es: ",Vehiculo," con el precio de: ",MAX(Precio)) AS 'vehiculo más caro' from vehiculos;
+
+18. consulte el precio promedio de los vehiculos
+
+	SELECT AVG(precio) FROM vehiculos;
+	SELECT CONCAT("El precio promedio de los vehiculos es de: ",AVG(precio)) AS 'Precio Promedio' FROM vehiculos;
+	
+19. consulte cuentos carros hay
+
+	SELECT COUNT(IDvehiculo) FROM vehiculos;
+	SELECT CONCAT("El número total de los vehiculos registrados es: ",COUNT(IDvehiculos)) AS 'Total vehiculos' FROM vehiculos; 
+
+20. consulte la placa y la transmisión del carro más caro
+
+	SELECT MAX(Precio) FROM vehiculos;
+	SELECT CONCAT("El vehiculo más caro tiene un valor de: ",MAX(Precio)," con la placa ",IDvehiculo," y la transmision de tipo: ",Transmision) AS 'vehiculo más caro' from vehiculos;
+
+
+
+
+
+
+
+
