@@ -53,6 +53,26 @@
      - ACTUALIZAR Transmision DEL VEHICULO  ABC124 AUTOMATICO
   
      - ELIMINAR LOS CARROS VENDIDOS
+
+     -  Consultar los vendedores que hay
+ 
+     - consultar los nombre de los clientes 
+     
+     -  consulte el nombre del vendedor con el telefono
+     
+     -  consulte el apellido y fecha de nacimiento de los vendedores 
+     
+     -  consultar y armar el menesaje con los datos de correspondencia de los clientes (Direccion, Barrio, Ciudad,Zona) 
+     
+     -  consulte el vehiculo mas economico 
+     
+     -  consulte el vehiculo mas caro
+     
+     -  consulte el precio promedio de los vehiculos
+     
+     -  consulte cuentos carros hay 
+     
+     -  consulte la placa y la transmisión de carro más caro
  
  para este ejercicio realice una base de datos desde el simbolo del sistema (CMD) usando completa y unicamente el lenguaje de SQL.
 
@@ -1054,7 +1074,7 @@ MySQL [vehiculos2]> select * from vehiculos;
 4 rows in set (0.001 sec)
 ~~~
 
-_Actualizamos la transmision del vehiculo _
+_Actualizamos la transmision del vehiculo_
 
 ~~~
 Microsoft Windows [Versión 10.0.19044.3086]
@@ -1081,8 +1101,281 @@ MySQL [vehiculos2]> select * from vehiculos;
 
 - ELIMINAR LOS CARROS VENDIDOS
 
-_verificamos el estado de la tabla_
+_verificamos el estado de la tabla ventas_
 
-</details>
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> select * from ventas;
++-----------+------------+------------+-----------+
+| IDVenta   | IDvendedor | IDvehiculo | IDcliente |
++-----------+------------+------------+-----------+
+| 05-230801 |          3 | V01        | CC1022    |
+| 02-230801 |          3 | V04        | cc2244    |
+| 03-230801 |          2 | V05        | cc2255    |
++-----------+------------+------------+-----------+
+3 rows in set (0.000 sec)
+~~~
+
+_Eliminamos los datos de la tabla venta_
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> delete from ventas where IDVenta = '05-230801';
+Query OK, 1 row affected (0.233 sec)
+
+MySQL [vehiculos2]> delete from ventas where IDvehiculo = 'V01';
+Query OK, 0 rows affected (0.000 sec)
+
+MySQL [vehiculos2]> select * from ventas;
++-----------+------------+------------+-----------+
+| IDVenta   | IDvendedor | IDvehiculo | IDcliente |
++-----------+------------+------------+-----------+
+| 02-230801 |          3 | V04        | cc2244    |
+| 03-230801 |          2 | V05        | cc2255    |
++-----------+------------+------------+-----------+
+2 rows in set (0.000 sec)
+~~~
 
 ***
+-   Consultar los vendedores disponibles en la tabla vendedores
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT IDvendedor,P_Nombre,S_Nombre,P_Apellido,S_Apellido FROM vendedores;
++------------+----------+----------+------------+------------+
+| IDvendedor | P_Nombre | S_Nombre | P_Apellido | S_Apellido |
++------------+----------+----------+------------+------------+
+|          1 | Dana     | Luz      | Cano       | Toro       |
+|          2 | Carlos   | Luis     | Dueñas     | NULL       |
+|          3 | Ana      | Flor     | Perez      | Florez     |
++------------+----------+----------+------------+------------+
+3 rows in set (0.000 sec)
+~~~
+
+***
+- Consultar los nombre de los clientes 
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT P_Nombre,S_Nombre FROM clientes;
++----------+----------+
+| P_Nombre | S_Nombre |
++----------+----------+
+| Carla    | maria    |
+| Ana      | Isabel   |
++----------+----------+
+2 rows in set (0.000 sec)
+~~~
+
+***
+- Consultar el nombre del vendedor y el telefono
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT P_Nombre,S_Nombre,telefono FROM vendedores;
++----------+----------+-------------+
+| P_Nombre | S_Nombre | telefono    |
++----------+----------+-------------+
+| Dana     | Luz      | 3013699900  |
+| Carlos   | Luis     | 60122223333 |
+| Ana      | Flor     | 3013699900  |
++----------+----------+-------------+
+3 rows in set (0.001 sec)
+~~~
+
+***
+- Consultar el telefono y la fecha de nacimiento de los vendedores
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+ySQL [vehiculos2]> SELECT P_Apellido,S_Apellido,f_nacimiento FROM vendedores;
++------------+------------+--------------+
+| P_Apellido | S_Apellido | f_nacimiento |
++------------+------------+--------------+
+| Cano       | Toro       | 2000-05-04   |
+| Dueñas     | NULL       | 2002-11-14   |
+| Perez      | Florez     | 2000-05-04   |
++------------+------------+--------------+
+3 rows in set (0.001 sec)
+~~~
+
+***
+- Consultar y armar el menesaje con los datos de correspondencia de los clientes (Direccion, Barrio, Ciudad,Zona)
+
+_realizamos una consulta_
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]>  SELECT Direccion,Barrio,Ciudad,Zona FROM clientes;
++-----------------+---------+------------+-----------+
+| Direccion       | Barrio  | Ciudad     | Zona      |
++-----------------+---------+------------+-----------+
+| kra 19 #  62-18 | Rosales | Bogota d.c | Chapinero |
+| kra 9 #  2-10   | sucre   | Bogota d.c | usme      |
++-----------------+---------+------------+-----------+
+2 rows in set (0.000 sec)
+~~~
+_Realizamos el mensaje_
+
+**Nota: La siguiente sentencia va ha ser larga por lo que adjuntamos una imagen**
+
+_Imagen 1_
+![Alt text](image-1.png)
+
+***
+
+- Consultar el vehiculo más economico de la tabla vehiculos
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT MIN(Precio) FROM vehiculos;
++-------------+
+| MIN(Precio) |
++-------------+
+|     8500000 |
++-------------+
+1 row in set (0.383 sec)
+~~~
+
+_metodo dos usando la concatenación_
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT CONCAT("El vehiculo más economico es: ",Vehiculo," con el precio de: ",MIN(Precio)) AS 'vehiculo más economico' from vehiculos;
++----------------------------------------------------------------+
+| vehiculo más economico                                         |
++----------------------------------------------------------------+
+| El vehiculo más economico es: ABC123 con el precio de: 8500000 |
++----------------------------------------------------------------+
+1 row in set (0.000 sec)
+~~~
+
+***
+- Consultar el vehiculo más caro
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+
+MySQL [vehiculos2]> SELECT MAX(Precio) FROM vehiculos;
++-------------+
+| MAX(Precio) |
++-------------+
+|   155000000 |
++-------------+
+1 row in set (0.001 sec)
+~~~
+
+_Segundo metodo usando la concatenación_
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT CONCAT("El vehiculo más economico es: ",Vehiculo," con el precio de: ",MAX(Precio)) AS 'vehiculo más economico' from vehiculos;
++------------------------------------------------------------------+
+| vehiculo más economico                                           |
++------------------------------------------------------------------+
+| El vehiculo más economico es: ABC123 con el precio de: 155000000 |
++------------------------------------------------------------------+
+1 row in set (0.000 sec)
+~~~
+
+***
+- Consulte el precio promedio de los vehiculos
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT AVG(precio) FROM vehiculos;
++-------------+
+| AVG(precio) |
++-------------+
+|    70375000 |
++-------------+
+1 row in set (0.045 sec)
+~~~
+
+_Segundo metodo usando la concatenación_
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT CONCAT("El precio promedio de los vehiculos es de: ",AVG(precio)) AS 'Precio Promedio' FROM vehiculos;
++-----------------------------------------------------+
+| Precio Promedio                                     |
++-----------------------------------------------------+
+| El precio promedio de los vehiculos es de: 70375000 |
++-----------------------------------------------------+
+1 row in set (0.001 sec)
+~~~
+
+***
+- Consultar cuantos carros hay
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT COUNT(IDvehiculo) FROM vehiculos;
++-------------------+
+| COUNT(IDvehiculo) |
++-------------------+
+|                 4 |
++-------------------+
+1 row in set (0.053 sec)
+~~~
+
+_Segundo metodo usando la concatenación_
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT CONCAT("El número total de los vehiculos registrados es: ",COUNT(IDvehiculo)) AS 'Total vehiculos' FROM vehiculos;
++----------------------------------------------------+
+| Total vehiculos                                    |
++----------------------------------------------------+
+| El número total de los vehiculos registrados es: 4 |
++----------------------------------------------------+
+1 row in set (0.007 sec)
+
+~~~
+
+***
+- Consulte la placa y la transmision del vehiculo más caro 
+
+~~~
+Microsoft Windows [Versión 10.0.19044.3086]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+MySQL [vehiculos2]> SELECT CONCAT("El vehiculo más caro tiene un valor de: ",MAX(Precio)," con la placa ",IDvehiculo," y la transmision de tipo: ",Transmision) AS 'vehiculo más caro' from vehiculos;
++-----------------------------------------------------------------------------------------------------+
+| vehiculo más caro                                                                                   |
++-----------------------------------------------------------------------------------------------------+
+| El vehiculo más caro tiene un valor de: 155000000 con la placa V01 y la transmision de tipo: MANUAL |
++-----------------------------------------------------------------------------------------------------+
+1 row in set (0.050 sec)
+~~~
+
+</details>
